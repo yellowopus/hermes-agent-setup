@@ -1,0 +1,37 @@
+# Agent config template — PLACEHOLDERS ONLY.
+# Copy to ~/.agent/config.yaml and replace every <PLACEHOLDER>.
+# Never commit a filled-in copy of this file.
+
+# Ordered provider list. The first entry is the primary;
+# the rest are fallbacks, tried in order.
+providers:
+  - name: primary
+    base_url: <https://primary-provider.example/v1>
+    api_key_env: PROVIDER_1_API_KEY
+    model: <primary-model-name>
+    # api_mode: chat_completions   # uncomment if the provider needs it
+
+  - name: fallback-1
+    base_url: <https://fallback-1-provider.example/v1>
+    api_key_env: PROVIDER_2_API_KEY
+    model: <fallback-1-model-name>
+
+  - name: fallback-2
+    base_url: <https://fallback-2-provider.example/v1>
+    api_key_env: PROVIDER_3_API_KEY
+    model: <fallback-2-model-name>
+
+# Skills: playbook directories, loaded read-only.
+skills:
+  external_dirs:
+    - <~/path/to/your/skills>
+
+# Safety: never auto-approve. The agent asks before irreversible actions.
+safety:
+  yolo: false
+  ask_before_irreversible: true
+
+# Budgets: keep runs bounded.
+defaults:
+  max_turns: 5
+  run_budget_seconds: 120
